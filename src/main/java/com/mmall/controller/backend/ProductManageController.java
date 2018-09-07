@@ -114,11 +114,11 @@ public class ProductManageController {
 
         if(iUserService.checkAdminRole(user).isSuccess()){
             //填充产品的业务逻辑
-            try {
+            /*try {
                 productName = new String(productName.getBytes("iso8859-1"),"utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-            }
+            }*/
             return iProductService.searchProduct(productName,productId,pageNum,pageSize);
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
