@@ -199,7 +199,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByUserIdOrderNo" resultMap="BaseResultMap" parameterType="map">
+  <select id="selectByUserIdAndOrderNo" resultMap="BaseResultMap" parameterType="map">
       select
       <include refid="Base_Column_List"/>
       from mmall_order
@@ -214,7 +214,22 @@
     where order_no = #{orderNo}
   </select>
 
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from mmall_order
+    where user_id = #{userId}
+    order by create_time desc
+  </select>
 
+
+
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from mmall_order
+    ORDER BY  create_time desc
+  </select>
 
 
 
