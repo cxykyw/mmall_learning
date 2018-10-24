@@ -1,8 +1,6 @@
 package com.mmall.common;
 
 import com.mmall.util.PropertiesUtil;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedis;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by geely
+ * kyw
  */
 public class RedisShardedPool {
     private static ShardedJedisPool pool;//sharded jedis连接池
