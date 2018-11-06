@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.service.IProductService;
 import com.mmall.vo.ProductDetailVo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,58 @@ public class ProductController {
                                          @PathVariable(value = "pageSize")Integer pageSize,
                                          @PathVariable(value = "orderBy")String orderBy){
 
+        if(pageNum == null){
+            pageNum=1;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
+        if(StringUtils.isNotBlank(orderBy)){
+            orderBy = "price_asc";
+        }
+
 
         return iProductService.getProductByKeywordCategory(keyword,categoryId,pageNum,pageSize,orderBy);
+    }
+    @RequestMapping(value = "/category/{categoryId}/{pageNum}/{pageSize}/{orderBy}",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<PageInfo> listRESTFul(
+                                         @PathVariable(value = "categoryId")Integer categoryId,
+                                         @PathVariable(value = "pageNum")Integer pageNum,
+                                         @PathVariable(value = "pageSize")Integer pageSize,
+                                         @PathVariable(value = "orderBy")String orderBy){
+
+        if(pageNum == null){
+            pageNum=1;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
+        if(StringUtils.isNotBlank(orderBy)){
+            orderBy = "price_asc";
+        }
+
+
+        return iProductService.getProductByKeywordCategory("",categoryId,pageNum,pageSize,orderBy);
+    }
+    @RequestMapping(value = "/keyword/{keyword}/{pageNum}/{pageSize}/{orderBy}",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<PageInfo> listRESTFul(@PathVariable(value = "keyword") String keyword,
+                                         @PathVariable(value = "pageNum")Integer pageNum,
+                                         @PathVariable(value = "pageSize")Integer pageSize,
+                                         @PathVariable(value = "orderBy")String orderBy){
+
+        if(pageNum == null){
+            pageNum=1;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
+        if(StringUtils.isNotBlank(orderBy)){
+            orderBy = "price_asc";
+        }
+
+
+        return iProductService.getProductByKeywordCategory(keyword,null,pageNum,pageSize,orderBy);
     }
 }
